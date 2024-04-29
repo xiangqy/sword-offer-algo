@@ -6,7 +6,8 @@ include_directories(../common/ ../common/log/include/)
 add_executable(division_method division_method.cc)
 target_link_libraries(division_method ${COMMON_LIBRARY})
 
-add_executable(binary_addition binary_addition.cc)
+add_executable(binary_addition binary_addition.cc
+        ../3-string/search_anagram.cc)
 target_link_libraries(binary_addition ${COMMON_LIBRARY})
 
 add_executable(statistics_binary statistics_binary.cc)
