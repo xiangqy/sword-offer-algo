@@ -19,14 +19,14 @@ bool search_anagram(const std::string &source, const std::string &dest) {
         counts[dest[i] - 'a']--;
     }
 
-    bool all_zero = std::any_of(counts.cbegin(), counts.cend(), [](const int num) { return num == 0; });
+    bool all_zero = std::all_of(counts.cbegin(), counts.cend(), [](const int num) { return num == 0; });
     if(all_zero){
         return true;
     }
     for(auto i = source.length(); i < dest.length(); ++i){
         counts[dest[i] - 'a']--;
         counts[dest[i - source.length()] - 'a']++;
-        all_zero = std::any_of(counts.cbegin(), counts.cend(), [](const int num) { return num == 0; });
+        all_zero = std::all_of(counts.cbegin(), counts.cend(), [](const int num) { return num == 0; });
         if(all_zero){
             return true;
         }
