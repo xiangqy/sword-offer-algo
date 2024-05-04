@@ -2,10 +2,11 @@
 // Created by naby on 24-5-3.
 //
 /*
- *通过哨兵节点可避免判断头结点是否为空的情形
+ * 通过哨兵节点可避免判断头结点是否为空的情形
+ * 使用哨兵节点可以简化创建或者删除链表头节点
+ * 操作的代码
  * */
 
-#include "log/log_setting.h"
 #include "node_common.h"
 #include <iostream>
 
@@ -62,13 +63,20 @@ void print_node(ListNode *head) {
     std::cout << "}" << std::endl;
 }
 
-int main(int argc, char **argv) {
-    std::vector<int> list_value{9, 8, 3, 7, -9, 34};
-    auto head = create_list_node(list_value);
-    print_node(head);
-    head = delete_node(head, 7);
-    print_node(head);
-    head = append_node(head, 109);
-    print_node(head);
-    return 0;
+ListNode *create_ring_list(const std::vector<int> &values, int ring_index) {
+    ListNode dummy(0);
+    auto *node = &dummy;
+    ListNode *entrance_node{nullptr};
+    for (auto i = 0; i < values.size(); ++i) {
+        auto new_node = new ListNode(values[i]);
+        node->next_node = new_node;
+        node = new_node;
+
+        if (i == ring_index) {
+            entrance_node = new_node;
+        } else if (i == values.size() - 1) {
+            node->next_node = entrance_node;
+        }
+    }
+    return dummy.next_node;
 }
