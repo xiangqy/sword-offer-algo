@@ -31,6 +31,8 @@ ListNode *delete_node(ListNode *head, int value);
 
 ListNode *create_ring_list(const std::vector<int> &values, int ring_index);
 
+ListNode *reverse_list(ListNode *head);
+
 void print_node(ListNode *head);
 
 #endif //SWORD_OFFER_ALGO_NODE_COMMON_H

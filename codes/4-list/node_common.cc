@@ -80,3 +80,15 @@ ListNode *create_ring_list(const std::vector<int> &values, int ring_index) {
     }
     return dummy.next_node;
 }
+
+ListNode *reverse_list(ListNode *head) {
+    ListNode *prev = nullptr;
+    auto current = head;
+    while (current) {
+        auto next = current->next_node;
+        current->next_node = prev;
+        prev = current;
+        current = next;
+    }
+    return prev;
+}
